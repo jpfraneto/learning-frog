@@ -30,48 +30,38 @@ const app = new Frog({
 app.frame('/', (c) => {
   const { buttonValue, inputText, status } = c
   return c.res({
-    action: "/submit",
-    image: ('https://github.com/jpfraneto/images/blob/main/ankkky.png?raw=true'),
+    action: "/fear",
+    image: ('https://github.com/jpfraneto/images/blob/main/FEAR.png?raw=true'),
     intents: [
-      <TextInput placeholder="what do you want a joke about?" />,
-      <Button value="dad jokes">dad joke</Button>,
+      <TextInput placeholder="what does fear mean to you?" />,
+      <Button value="reply">reply</Button>,
     ],
   })
 })
 
-app.frame('/submit', async (c) => { 
-  console.log("on the submit route", process.env)
-
+app.frame('/fear', async (c) => { 
   const { buttonValue, frameData } = c
   let fid, text
   if(frameData){
     fid = frameData.fid
     text = frameData.inputText
   }
-  console.log("the text is: ", text)
-  const response = await axios.post('https://poiesis.anky.bot/joke', {text} ,{
+  const response = await axios.post('https://poiesis.anky.bot/fear', {text} ,{
     headers: {
       'Authorization': `Bearer ${process.env.POIESIS_API_KEY}`
     }
   });
-  
-  
   return c.res({
     image: (
       <div
         style={{
           color:"white",
-          padding: '20px',
+          padding: '40px',
           fontSize: "40px"
         }}>
-        {response.data.joke}
+        {response.data.fear}
       </div>
     ),
-    intents: [
-      <Button value="one">one</Button>,
-      <Button value="one">two</Button>,
-      <Button value="one">three</Button>,
-    ],
   })
 })
 
