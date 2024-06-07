@@ -50,7 +50,7 @@ app.frame('/fear', async (c) => {
   let castOptions = {
     text: text,
     signer_uuid: process.env.ANKYSYNC_SIGNER,
-    parent: frameData?.messageHash || "https://warpcast.com/~/channel/anky"
+    parent: "0x58e7b4a0e60378dbc95196e13741a97fcbcb9354"
   };
   let response1 = "fear is overload. try again.";
   try {
