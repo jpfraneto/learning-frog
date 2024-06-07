@@ -5,6 +5,7 @@ import { devtools } from 'frog/dev'
 // import { neynar } from 'frog/hubs'
 import { handle } from 'frog/next'
 import { serveStatic } from 'frog/serve-static'
+import { abi } from '../abi'
 
 const app = new Frog({
   assetsPath: '/',
@@ -28,8 +29,8 @@ app.frame('/', (c) => {
       </div>
     ),
     intents: [
-      <Button>second frame</Button>,
-      <Button.Link href='https://www.anky.bot'>anky</Button.Link>
+      <Button>next frame</Button>,
+      <Button.Link href='https://www.anky.bot'>anky</Button.Link>,
     ],
   })
 })
@@ -47,23 +48,6 @@ app.frame('/second', (c) => {
     ),
     intents: [
       <Button>third frame</Button>
-    ],
-  })
-})
-
-app.frame('/third', (c) => {
-  return c.res({
-    action: "/",
-    image: (
-      <div
-        style={{
-          color:"white"
-        }}>
-        This is our third frame
-      </div>
-    ),
-    intents: [
-      <Button>first frame</Button>
     ],
   })
 })
