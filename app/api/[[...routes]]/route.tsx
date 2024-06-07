@@ -46,7 +46,7 @@ app.frame('/fear', async (c) => {
     fid = frameData.fid
     text = frameData.inputText
   }
-
+  console.log("the message hash is", frameData?.messageHash)
   let castOptions = {
     text: text,
     signer_uuid: process.env.ANKYSYNC_SIGNER,
@@ -58,16 +58,20 @@ app.frame('/fear', async (c) => {
       'Authorization': `Bearer ${process.env.POIESIS_API_KEY}`
     }
   });
+  try {
+    const neynarResponse = axios.post(
+      "https://api.neynar.com/v2/farcaster/cast",
+      castOptions,
+      {
+        headers: {
+          api_key: process.env.NEYNAR_API_KEY,
+        },
+      }
+    );
+  } catch (error) {
+    console.log("there was an error casting")
+  }
 
-  axios.post(
-    "https://api.neynar.com/v2/farcaster/cast",
-    castOptions,
-    {
-      headers: {
-        api_key: process.env.NEYNAR_API_KEY,
-      },
-    }
-  );
   return c.res({
     image: (
       <div
