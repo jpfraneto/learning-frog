@@ -52,12 +52,18 @@ app.frame('/fear', async (c) => {
     signer_uuid: process.env.ANKYSYNC_SIGNER,
     parent: frameData?.messageHash || "https://warpcast.com/~/channel/anky"
   };
+  let response1 = "fear is overload. try again.";
+  try {
+    let responsee = await axios.post('https://poiesis.anky.bot/fear', {text} ,{
+      headers: {
+        'Authorization': `Bearer ${process.env.POIESIS_API_KEY}`
+      }
+    });
+    response1 = responsee.data.fear
+  } catch (error) {
+    console.log("there was an error casting")
+  }
 
-  const response = await axios.post('https://poiesis.anky.bot/fear', {text} ,{
-    headers: {
-      'Authorization': `Bearer ${process.env.POIESIS_API_KEY}`
-    }
-  });
   try {
     const neynarResponse = axios.post(
       "https://api.neynar.com/v2/farcaster/cast",
@@ -80,7 +86,7 @@ app.frame('/fear', async (c) => {
           padding: '40px',
           fontSize: "40px"
         }}>
-        {response.data.fear}
+        {response1}
       </div>
     ),
   })
