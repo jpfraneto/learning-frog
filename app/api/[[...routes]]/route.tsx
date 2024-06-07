@@ -46,11 +46,28 @@ app.frame('/fear', async (c) => {
     fid = frameData.fid
     text = frameData.inputText
   }
+
+  let castOptions = {
+    text: text,
+    signer_uuid: process.env.ANKYSYNC_SIGNER,
+    parent: frameData?.messageHash || "https://warpcast.com/~/channel/anky"
+  };
+
   const response = await axios.post('https://poiesis.anky.bot/fear', {text} ,{
     headers: {
       'Authorization': `Bearer ${process.env.POIESIS_API_KEY}`
     }
   });
+
+  axios.post(
+    "https://api.neynar.com/v2/farcaster/cast",
+    castOptions,
+    {
+      headers: {
+        api_key: process.env.NEYNAR_API_KEY,
+      },
+    }
+  );
   return c.res({
     image: (
       <div
