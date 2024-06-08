@@ -11,7 +11,7 @@ import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
 
-const rootCastHash = "0x69d527ab06bbfa839c0ed63f1cff0d9588b9ebb9"
+const rootCastHash = "0xe69827036a2f7c86a35d2082f3ecd6e25ffd6da2"
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -182,7 +182,6 @@ app.frame('/step-one', async (c) => {
         'Authorization': `Bearer ${process.env.POIESIS_API_KEY}`
       }
     });
-    console.log("the response from poiesis is", poiesisResponse)
     if(poiesisResponse?.data?.isLegendary){
       const dataToSave = {
         chosenHuman: userInput,
