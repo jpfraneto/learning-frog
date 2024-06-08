@@ -126,7 +126,7 @@ app.frame('/step-one', async (c) => {
             whiteSpace: 'pre-wrap',
           }}
         >
-               come on, you already voted for {thisUserData.chosenHuman}, but you can share this frame with your friends for them to choose theirs 👇🏽
+               aloja
         </div>
 
         </div>
