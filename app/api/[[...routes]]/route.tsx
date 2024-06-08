@@ -79,12 +79,11 @@ const app = new Frog({
 // export const runtime = 'edge'
 
 app.frame('/', (c) => {
-  const { buttonValue, inputText, status } = c
   return c.res({
     action: "/step-one",
     image: ('https://github.com/jpfraneto/images/blob/main/leggendary.png?raw=true'),
     intents: [
-      <TextInput placeholder="jerry garcia, steve jobs, henry ford, etc." />,
+      <TextInput placeholder="jerry garcia, steve jobs, etc." />,
       <Button value="reply">reply</Button>,
     ],
   })
@@ -139,14 +138,12 @@ app.frame('/step-one', async (c) => {
       ],
     })
   } else {
-    console.log("asking poiesis about ", userInput)
-    console.log('the api key for poiesis is,', process.env.POIESIS_API_KEY)
+
     let poiesisResponse = await axios.post('https://poiesis.anky.bot/legendary', {userInput} ,{
       headers: {
         'Authorization': `Bearer ${process.env.POIESIS_API_KEY}`
       }
     });
-    console.log("the response from poiesis is", poiesisResponse.data)
     if(poiesisResponse?.data?.isLegendary){
       const dataToSave = {
         chosenHuman: userInput,
