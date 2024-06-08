@@ -173,9 +173,8 @@ app.frame('/step-one', async (c) => {
     </div>
         ),
         intents: [
-          <Button.Link href={`https://warpcast.com/jpfraneto/${rootCastHash.slice(0,10)}`}>read comments</Button.Link>,
-          <Button.Link href="https://warpcast.com/~/compose?text=choose%20the%20most%20legendary%20human%20of%20our%20time%20on%20the%20frame%20below%20%F0%9F%91%87%F0%9F%8F%BD%20%28credits%3A%20%40jpfraneto%29&embeds[]=https://bangercaster.xyz/api
-          ">share frame</Button.Link>,
+          <TextInput placeholder="ricky martin, cristiano ronaldo, etc." />,
+          <Button value="reply">try again</Button>,
         ],
       })
     }
