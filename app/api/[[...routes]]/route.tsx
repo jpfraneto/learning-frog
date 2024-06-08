@@ -133,7 +133,7 @@ app.frame('/step-one', async (c) => {
         </div>
       ),
       intents: [
-        <Button.Link href="https://warpcast.com/~/compose?text=choose%20the%20most%20legendary%20human%20of%20our%20time%20on%20the%20frame%20below%20%F0%9F%91%87%F0%9F%8F%BD%20%28credits%3A%20%40jpfraneto%29&embeds[]=https://bangercaster.xyz
+        <Button.Link href="https://warpcast.com/~/compose?text=choose%20the%20most%20legendary%20human%20of%20our%20time%20on%20the%20frame%20below%20%F0%9F%91%87%F0%9F%8F%BD%20%28credits%3A%20%40jpfraneto%29&embeds[]=https://bangercaster.xyz/api
         ">share frame</Button.Link>,
       ],
     })
@@ -144,6 +144,7 @@ app.frame('/step-one', async (c) => {
         'Authorization': `Bearer ${process.env.POIESIS_API_KEY}`
       }
     });
+    console.log("the response from poiesis is", poiesisResponse)
     if(poiesisResponse?.data?.isLegendary){
       const dataToSave = {
         chosenHuman: userInput,
@@ -228,7 +229,7 @@ app.frame('/step-one', async (c) => {
         ),
         intents: [
           <Button.Link href={`https://warpcast.com/jpfraneto/${rootCastHash.slice(0,10)}`}>read comments</Button.Link>,
-          <Button.Link href="https://warpcast.com/~/compose?text=choose%20the%20most%20legendary%20human%20of%20our%20time%20on%20the%20frame%20below%20%F0%9F%91%87%F0%9F%8F%BD%20%28credits%3A%20%40jpfraneto%29&embeds[]=https://bangercaster.xyz
+          <Button.Link href="https://warpcast.com/~/compose?text=choose%20the%20most%20legendary%20human%20of%20our%20time%20on%20the%20frame%20below%20%F0%9F%91%87%F0%9F%8F%BD%20%28credits%3A%20%40jpfraneto%29&embeds[]=https://bangercaster.xyz/api
           ">share frame</Button.Link>,
         ],
       })
