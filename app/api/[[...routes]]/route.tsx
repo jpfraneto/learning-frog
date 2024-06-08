@@ -13,52 +13,6 @@ import { fileURLToPath } from 'url';
 
 const rootCastHash = "0xe69827036a2f7c86a35d2082f3ecd6e25ffd6da2"
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
-
-const dataDir = path.resolve(__dirname, '../data');
-
-// Function to save JSON data to a file
-function saveJSONToFile(fid, data) {
-  const filePath = path.join(dataDir, `${fid}.json`);
-
-  if (!fs.existsSync(dataDir)) {
-    fs.mkdirSync(dataDir, { recursive: true });
-  }
-
-  fs.writeFileSync(filePath, JSON.stringify(data, null, 2), 'utf8');
-  console.log(`Data saved to ${filePath}`);
-}
-
-// Function to read JSON data from a file
-function readJSONFromFile(fid) {
-  const filePath = path.join(dataDir, `${fid}.json`);
-
-  if (!fs.existsSync(filePath)) {
-    return null
-  }
-
-  const data = fs.readFileSync(filePath, 'utf8');
-  return JSON.parse(data);
-}
-
-const countFilePath = path.resolve('submissionCount.json');
-
-const getSubmissionCount = () => {
-  if (!fs.existsSync(countFilePath)) {
-    return 0;
-  }
-  const data = fs.readFileSync(countFilePath, 'utf8');
-  return JSON.parse(data).count || 0;
-};
-
-const incrementSubmissionCount = () => {
-  const currentCount = getSubmissionCount();
-  const newCount = currentCount + 1;
-  fs.writeFileSync(countFilePath, JSON.stringify({ count: newCount }));
-  return newCount;
-};
-
 const app = new Frog({
   assetsPath: '/',
   basePath: '/api',
