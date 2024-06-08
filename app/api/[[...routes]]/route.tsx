@@ -7,9 +7,6 @@ import { handle } from 'frog/next'
 import { serveStatic } from 'frog/serve-static'
 import { abi } from '../abi'
 import axios from 'axios'
-import fs from 'fs';
-import path from 'path';
-import { fileURLToPath } from 'url';
 
 const rootCastHash = "0xe69827036a2f7c86a35d2082f3ecd6e25ffd6da2"
 
@@ -109,21 +106,21 @@ app.frame('/step-one', async (c) => {
                 width: '100%',
               }}>
               <div
-      style={{
-        color: 'white',
-        fontSize: 50,
-        fontStyle: 'normal',
-        letterSpacing: '-0.025em',
-        lineHeight: 1,
-        display: "flex",
-        marginTop: 30,
-        padding: '0 120px',
-        whiteSpace: 'pre-wrap',
-      }}
-    >
-             enter a valid name
-    </div>
-    </div>
+                  style={{
+                    color: 'white',
+                    fontSize: 50,
+                    fontStyle: 'normal',
+                    letterSpacing: '-0.025em',
+                    lineHeight: 1,
+                    display: "flex",
+                    marginTop: 30,
+                    padding: '0 120px',
+                    whiteSpace: 'pre-wrap',
+                  }}
+                >
+                        enter a valid name
+                </div>
+       </div>
         ),
         intents: [
           <TextInput placeholder="ricky martin, cristiano ronaldo, etc." />,
