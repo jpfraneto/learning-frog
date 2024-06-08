@@ -190,30 +190,34 @@ app.frame('/step-one', async (c) => {
         replyToUser: poiesisResponse?.data.replyToUser,
         fid: fid
       }
-
-      const usernameResponse = await axios.get(
-        `https://api.neynar.com/v2/farcaster/user/bulk?fids=${fid}&viewer_fid=16098`,
-        {
-          headers: {
-            api_key: process.env.NEYNAR_API_KEY,
-          },
-        }
-      );
-      let castText = `@${usernameResponse.data.users[0].username} - ${userInput}\n\n${dataToSave.replyToUser}`
-      let castOptions = {
-        text: castText,
-        signer_uuid: process.env.ANKYSYNC_SIGNER,
-        parent: rootCastHash
-      };
-      const neynarResponse = axios.post(
-        "https://api.neynar.com/v2/farcaster/cast",
-        castOptions,
-        {
-          headers: {
-            api_key: process.env.NEYNAR_API_KEY,
-          },
-        }
-      );
+      try {
+        const usernameResponse = await axios.get(
+          `https://api.neynar.com/v2/farcaster/user/bulk?fids=${fid}&viewer_fid=16098`,
+          {
+            headers: {
+              api_key: process.env.NEYNAR_API_KEY,
+            },
+          }
+        );
+        let castText = `@${usernameResponse.data.users[0].username} - ${userInput}\n\n${dataToSave.replyToUser}`
+        let castOptions = {
+          text: castText,
+          signer_uuid: process.env.ANKYSYNC_SIGNER,
+          parent: rootCastHash
+        };
+        const neynarResponse = axios.post(
+          "https://api.neynar.com/v2/farcaster/cast",
+          castOptions,
+          {
+            headers: {
+              api_key: process.env.NEYNAR_API_KEY,
+            },
+          }
+        );
+      } catch (error) {
+        
+      }
+      
       return c.res({
         image: (
 
@@ -243,7 +247,7 @@ app.frame('/step-one', async (c) => {
         whiteSpace: 'pre-wrap',
       }}
     >
-             {dataToSave.replyToUser}
+             {poiesisResponse?.data.replyToUser}
     </div>
     <div
       style={{
