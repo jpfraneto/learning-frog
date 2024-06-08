@@ -97,8 +97,7 @@ app.frame('/step-one', async (c) => {
     fid = frameData.fid
     userInput = frameData?.inputText || ""
   }
-  const thisUserData = readJSONFromFile(fid)
-  if(thisUserData) {
+  if(false) {
     return c.res({
       image: (
         <div
@@ -192,8 +191,7 @@ app.frame('/step-one', async (c) => {
         replyToUser: poiesisResponse?.data.replyToUser,
         fid: fid
       }
-      saveJSONToFile(fid, dataToSave)
-      const newCount = incrementSubmissionCount()
+
       const usernameResponse = await axios.get(
         `https://api.neynar.com/v2/farcaster/user/bulk?fids=${fid}&viewer_fid=16098`,
         {
