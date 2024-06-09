@@ -8,7 +8,7 @@ import { serveStatic } from 'frog/serve-static'
 import { abi } from '../abi'
 import axios from 'axios'
 
-const rootCastHash = "0xe69827036a2f7c86a35d2082f3ecd6e25ffd6da2"
+const rootCastHash = "0x4bfa1e8e16f3e0f76d21e015f7dee47c8e4920bc"
 
 const app = new Frog({
   assetsPath: '/',
